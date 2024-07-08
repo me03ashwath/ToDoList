@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block content %}
+            
+<div class="block">
+    <div class="sub-heading">
+        Your Topics:
+    </div>
+
+    <div class="topics">
+        {% for topic in topics %}
+        <div class="topic-box">
+            {{topic}}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
