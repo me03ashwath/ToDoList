@@ -12,9 +12,18 @@
 
     <div class="header">
         <div class="title"><h1>TO-DO List</h1></div>
+        {% if request.user.is_authenticated %}
         <div class="userinfo">
-            {{request.user.username}}
+            <button class="username dropbtn"><h3>{{request.user.username}}</h3></button>
+            <div class="drop-content">
+                <div class="logout" >
+                <button class="logout-button" onclick="window.location.href=`{% url 'logout' %}`"><b>Logout</b></button>
+                </div>
+            </div>
+                
+            
         </div>
+        {% endif %}
     </div>
 
     <div class="main_body">
@@ -22,6 +31,6 @@
         
         {% endblock %}
     </div>
-    
+    <script src="../static/scripts/script.js"></script>
 </body>
 </html>
