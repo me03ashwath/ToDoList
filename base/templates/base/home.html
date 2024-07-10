@@ -9,9 +9,22 @@
     <div class="topics">
         {% for topic in topics %}
         <div class="topic-box">
-            {{topic}}
+            <div class="topic-heading">
+                {{topic}}
+            </div>
+            <div class="topic-body">
+                <div class="topic-description">
+                    {{topic.description}}
+                </div>
+                <div class="topic-deadline">
+                    {{topic.deadline}}
+                </div>
+            </div>
         </div>
         {% endfor %}
+        <button class="topic-box topic-add-btn" onclick="window.location.href=`{% url 'logout' %}`">
+                <div class="plus-icon">&plus;</div>
+        </button>
     </div>
 
 </div>

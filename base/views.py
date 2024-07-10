@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .models import Task
+from .models import Topic, Task
 
 def loginRedirect(request):
     return redirect('login') 
@@ -59,9 +59,7 @@ def signupPage(request):
 
 def home(request):
     user = request.user
-    # topics = Topics.object.get(owner = user.username)
-    topics = ['trip', 'groceries', 'homework']
-
+    topics = Topic.objects.filter(user = user)
     context = {'topics':topics}
     return render(request, 'base/home.html', context)
 
@@ -77,15 +75,15 @@ def taskDetail(request):
 def deleteTopic(request):
     pass
 
-def taskList(request):
-    tasks = Task.objects.all()
-    context ={'tasks' : tasks}   
-    return render(request, 'base/home.html', context)
+# def taskList(request):
+#     tasks = Task.objects.all()
+#     context ={'tasks' : tasks}   
+#     return render(request, 'base/home.html', context)
 
-def taskDetail(request,pk):
-    task = Task.objects.get(id = pk)
-    context = {'task' : task} 
-    return render(request, 'base/task.html', context)
+# def taskDetail(request,pk):
+#     task = Task.objects.get(id = pk)
+#     context = {'task' : task} 
+#     return render(request, 'base/task.html', context)
 
 def logoutUser(request):
     logout(request)
