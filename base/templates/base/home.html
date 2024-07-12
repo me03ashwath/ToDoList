@@ -16,13 +16,20 @@
                 <div class="topic-description">
                     {{topic.description}}
                 </div>
+                {% if topic.deadline is not none %}
                 <div class="topic-deadline">
                     {{topic.deadline}}
                 </div>
+                {% else %}
+                <div class="topic-deadline" style="color: transparent;">
+                    no deadline
+                </div>
+                {% endif %}
+
             </div>
         </div>
         {% endfor %}
-        <button class="topic-box topic-add-btn" onclick="window.location.href=`{% url 'logout' %}`">
+        <button class="topic-box topic-add-btn" onclick="window.location.href=`{% url 'createtopic' %}`">
                 <div class="plus-icon">&plus;</div>
         </button>
     </div>

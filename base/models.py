@@ -6,7 +6,7 @@ class Topic(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    deadline = models.DateField()
+    deadline = models.DateField(null=True, blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):

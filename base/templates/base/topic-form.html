@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="form_box">
+    <div class="form_box_title">
+        <h2>{{page}}</h2>
+    </div>
+
+    <div class="form_body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input_field">
+                <label for="title">Topic:</label>
+                <input type="text" class="text" name="title" value="new topic" onfocus="clearDefaultValue(this)" onblur="restoreDefaultValue(this, 'new topic')" style="color: rgba(0,0,0,.5);">
+            </div>
+
+            <div class="input_field">
+                <label for="descrption">Description:</label>
+                <input type="text text-field" class="text" name="description">
+            </div>
+
+            <div class="input_field">
+                <label for="deadline">Deadline:</label>
+                <input type="date" class="date" name="deadline">
+            </div>
+
+            <div class="input_field">
+                <input type="submit" name="submit" class="submit" value="Create">
+            </div>
+        
+        </form>
+    </div>
+</div>
+
+{% endblock %}

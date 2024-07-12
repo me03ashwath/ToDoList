@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .models import Topic, Task
+from .forms import TopicForm
 
 def loginRedirect(request):
     return redirect('login') 
@@ -64,7 +65,23 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 def createTopic(request):
-    pass
+    form = TopicForm()
+    page = 'Create New Topic'
+    if request.method == 'POST':
+        form = TopicForm(request.POST)
+        if form.is_valid():
+            topic_form = form.save(commit=False)
+            topic_form.user = request.user
+            topic_form.title = request.POST.get('title').title()
+            topic_form.description = request.POST.get('description')
+            if request.POST.get('deadline'): 
+                topic_form.deadline = request.POST.get('deadline')
+            topic_form.save()
+            return redirect('home')
+        
+    else:
+        context = {'page':page,'form':form}
+        return render(request, 'base/topic-form.html', context)
 
 def topicListPage(request):
     pass

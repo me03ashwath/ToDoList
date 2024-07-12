@@ -8,3 +8,17 @@ document.addEventListener('click', function(event) {
         dropContent.style.display = 'none';
     }
 });
+
+function clearDefaultValue(element) {
+    if (element.value == 'new topic') {
+        element.value = '';
+        element.style.color = 'rgba(0,0,0,1)';
+    }
+}
+
+function restoreDefaultValue(element, defaultvalue) {
+    if (element.value == '') {
+            element.value = defaultvalue;
+            element.style.color = 'rgba(0,0,0,.5)';
+    }
+}

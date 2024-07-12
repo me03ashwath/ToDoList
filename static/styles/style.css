@@ -59,7 +59,7 @@ body{
     color: #215ac2;
     
 }
-.login_box{
+.form_box{
     margin-top: 100px;
     margin-left: 500px;
     margin-right: 500px;
@@ -69,12 +69,12 @@ body{
     border-radius: 20px;
     background-color: #c2ecfd;
 }
-.login_box_title{
+.form_box_title{
     display: flex;
     justify-content: center;
     padding: 10px;
 }
-.login_form{
+.form-body{
     display: flex;
     justify-items: space-around;
     font-size: larger;
@@ -141,7 +141,6 @@ label{
     flex-direction: column;
     text-align: center;
     margin: 10px; 
-    border: 3px solid black;
     border-radius: 20px;
     background-color: #c2ecfd;  
 }
@@ -172,6 +171,22 @@ label{
     overflow-y: auto;
     text-overflow: ellipsis;
 }
+.topic-description::-webkit-scrollbar {
+    width: 10px; 
+}
+.topic-description::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.topic-description::-webkit-scrollbar-thumb {
+    background: #2159c2d7;
+    border-radius: 3px;  
+}
+
+.topic-description::-webkit-scrollbar-thumb:hover {
+    background: #1c55c0; 
+}
+
 .topic-deadline{
     margin-top: auto;
     border-top: 2px solid black;
@@ -182,10 +197,10 @@ label{
     justify-content: center;
     align-items: center;
 }
+.topic-add-btn:hover > :first-child{
+    color: #1c55c0; 
+}
 .plus-icon{
-    font-size: 150px;
+    font-size: 120px;
     color: #2159c2d7;
-    /* border: 1px solid black;
-    border-radius: 100px;
-    background-color: #2159c279; */
 }
