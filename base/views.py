@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Topic, Task
 from .forms import TopicForm
 
@@ -83,24 +82,16 @@ def createTopic(request):
         context = {'page':page,'form':form}
         return render(request, 'base/topic-form.html', context)
 
-def topicListPage(request):
-    pass
+def topicListPage(request, topicId):
+    topic = Topic.objects.get(id = topicId)
+    tasks = Task.objects.filter(topic = topic)
+    context = {'tasks':tasks}
+    return render(request, 'base/topic-page.html', context)
 
-def taskDetail(request):
-    pass
-
-def deleteTopic(request):
-    pass
-
-# def taskList(request):
-#     tasks = Task.objects.all()
-#     context ={'tasks' : tasks}   
-#     return render(request, 'base/home.html', context)
-
-# def taskDetail(request,pk):
-#     task = Task.objects.get(id = pk)
-#     context = {'task' : task} 
-#     return render(request, 'base/task.html', context)
+def deleteTopic(request, topicId):
+    topic = get_object_or_404(Topic, id=topicId)
+    topic.delete()
+    return redirect('home')
 
 def logoutUser(request):
     logout(request)

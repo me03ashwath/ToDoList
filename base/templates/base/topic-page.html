@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="task-box">
+    <div class="heading">
+        <div class="task-list">
+            {% for task in tasks %}
+            <div class="task-box">
+                <div class="tick-box"></div>
+                <div class="task">{{task.title}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

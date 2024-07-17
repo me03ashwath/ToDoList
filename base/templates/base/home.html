@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load static %}
             
 <div class="block">
     <div class="sub-heading">
@@ -7,28 +8,32 @@
     </div>
 
     <div class="topics">
-        {% for topic in topics %}
-        <div class="topic-box">
-            <div class="topic-heading">
-                {{topic}}
+            {% for topic in topics %}
+            <div class="topic-box btn" onmouseover="hoverDim(this)" onmouseout="resetDim(this)">
+                <div class="topic-heading dim" onclick="redirectToTopic('{{topic.id}}')">
+                    {{topic}}
+                </div>
+                <div class="topic-body" onclick="redirectToTopic('{{topic.id}}')">
+                    <div class="topic-description">
+                        {{topic.description}}
+                    </div>
+                    <div class="topic-box-footer">
+                        {% if topic.deadline is not none %}
+                        <div class="topic-deadline" onclick="redirectToTopic('{{topic.id}}')">
+                            {{topic.deadline}}
+                        </div>
+                        {% else %}
+                        <div class="topic-deadline" style="color: transparent;" onclick="redirectToTopic('{{topic.id}}')">
+                            no deadline
+                        </div>
+                        {% endif %}
+                        <div class="delete-btn btn" onclick="deleteTopic('{{topic.id}}', event)">
+                            <img src="{% static 'images/bin.png' %}" height=" 20px">
+                        </div>
+                    </div>              
+                </div>
             </div>
-            <div class="topic-body">
-                <div class="topic-description">
-                    {{topic.description}}
-                </div>
-                {% if topic.deadline is not none %}
-                <div class="topic-deadline">
-                    {{topic.deadline}}
-                </div>
-                {% else %}
-                <div class="topic-deadline" style="color: transparent;">
-                    no deadline
-                </div>
-                {% endif %}
-
-            </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
         <button class="topic-box topic-add-btn" onclick="window.location.href=`{% url 'createtopic' %}`">
                 <div class="plus-icon">&plus;</div>
         </button>
