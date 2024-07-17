@@ -23,8 +23,8 @@ function restoreDefaultValue(element, defaultvalue) {
     }
 }
 
-function redirectToTopic(topicId) {
-    window.location.href = `/topic/${topicId}`;
+function redirect(address) {
+    window.location.href = address;
 }
 
 function hoverDim(element) {
@@ -48,3 +48,18 @@ function deleteTopic(topicId, event) {
     }
 }
 
+function hoverShow(element) {
+    const dimElement = element.querySelector('.task-delete-btn');
+    if (dimElement.style.opacity == '0') {
+        dimElement.style.opacity = '1';
+    }
+    dimElement.style.opacity = '1';
+}
+
+function resetShow(element) {
+    const dimElement = element.querySelector('.task-delete-btn');
+    if (dimElement.style.opacity == '1') {
+        dimElement.style.opacity = '0';
+    }
+    dimElement.style.opacity = '0';
+}

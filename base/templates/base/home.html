@@ -10,20 +10,20 @@
     <div class="topics">
             {% for topic in topics %}
             <div class="topic-box btn" onmouseover="hoverDim(this)" onmouseout="resetDim(this)">
-                <div class="topic-heading dim" onclick="redirectToTopic('{{topic.id}}')">
+                <div class="topic-heading dim" onclick="redirect('/topic/{{topic.id}}')">
                     {{topic}}
                 </div>
-                <div class="topic-body" onclick="redirectToTopic('{{topic.id}}')">
+                <div class="topic-body" onclick="redirect('/topic/{{topic.id}}')">
                     <div class="topic-description">
                         {{topic.description}}
                     </div>
                     <div class="topic-box-footer">
                         {% if topic.deadline is not none %}
-                        <div class="topic-deadline" onclick="redirectToTopic('{{topic.id}}')">
+                        <div class="topic-deadline" onclick="redirect('/topic/{{topic.id}}')">
                             {{topic.deadline}}
                         </div>
                         {% else %}
-                        <div class="topic-deadline" style="color: transparent;" onclick="redirectToTopic('{{topic.id}}')">
+                        <div class="topic-deadline" style="color: transparent;" onclick="redirect('/topic/{{topic.id}}')">
                             no deadline
                         </div>
                         {% endif %}

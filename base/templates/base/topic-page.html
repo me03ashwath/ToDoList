@@ -1,18 +1,65 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
+<div class="topic-page">
+    <div class="home-btn-div">
+        <button class="home-btn btn" onclick="window.location.href=`{% url 'home' %}`">
+            Home
+        </button>
+    </div>
 
-<div class="task-box">
-    <div class="heading">
-        <div class="task-list">
-            {% for task in tasks %}
-            <div class="task-box">
-                <div class="tick-box"></div>
-                <div class="task">{{task.title}}</div>
+    <div class="task-box">
+        <div class="topic-desc-box">
+            <div class="desc-div">
+                <h3 class="desc-heading" >Description:</h3>
+                <p>{{topic.description}}</p>
             </div>
-            {% endfor %}
+            <div class="date-div">
+                <div class="created-div" >
+                    <h3 class="heading" style="border-bottom: 1px solid black;">Created</h3>
+                    {{topic.created|date:"M d-Y"}}
+                </div>
+                <div class="deadline-div">
+                    <h3 class="heading" style="border-bottom: 1px solid black;">Deadline</h3>
+                    {{topic.deadline|date:"M d-Y"}}
+                </div>
+            </div>
         </div>
+
+        <div class="task-list-box">
+            <div class="task-heading">
+                {{topic.title}}
+            </div>
+            <div class="task-list">
+            {% for task in tasks %}
+                <div class="task-list-item" onmouseenter="hoverShow(this)" onmouseleave="resetShow(this)">
+                    <div style="display: flex;">
+                        <div class="tickbox-div">
+                            <input type="checkbox" class="tickbox" id="tickbox-{{ forloop.counter }}" >
+                            <label for="tickbox-{{ forloop.counter }}" class="custom-tickbox"></label>
+                        </div>
+                        <div class="task">{{task.title}}</div>
+                    </div>
+                    <div class="task-delete-btn" onmouseenter="hoverDim(this)" onmouseleave="resetDim(this)">
+                        <img class="dim" src="{% static 'images/delete-button.png'%}" width="13px" onclick="redirect('/delete-task/{{task.id}}')">
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            
+            
+                
+            <div class="new-task">
+                <form class="new-task-form" method="POST">
+                    {% csrf_token %}
+                    <h3>Add Task:</h3>
+                    <input name="title" type="text" class="input_field">
+                    <input type="submit" class="home-btn btn" value="Add">
+                </form>    
+            </div>
+            
+        </div>
+        <div class="empty"></div>
     </div>
 </div>
-
 {% endblock %}
