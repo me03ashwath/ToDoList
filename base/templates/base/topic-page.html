@@ -35,10 +35,9 @@
                 <div class="task-list-item" onmouseenter="hoverShow(this)" onmouseleave="resetShow(this)">
                     <div style="display: flex;">
                         <div class="tickbox-div">
-                            <input type="checkbox" class="tickbox" id="tickbox-{{ forloop.counter }}" >
-                            <label for="tickbox-{{ forloop.counter }}" class="custom-tickbox"></label>
+                            <div class="tickbox {% if task.completed %}ticked{% endif %}" onclick="redirect('/task-completed/{{task.id}}')"></div>
                         </div>
-                        <div class="task">{{task.title}}</div>
+                        <div class="task {% if task.completed %}strike{% endif %}">&#160{{task.title}}&#160</div>
                     </div>
                     <div class="task-delete-btn" onmouseenter="hoverDim(this)" onmouseleave="resetDim(this)">
                         <img class="dim" src="{% static 'images/delete-button.png'%}" width="13px" onclick="redirect('/delete-task/{{task.id}}')">

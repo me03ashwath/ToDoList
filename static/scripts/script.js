@@ -63,3 +63,7 @@ function resetShow(element) {
     }
     dimElement.style.opacity = '0';
 }
+
+function strikeTask(element, taskId){
+    element.classList.add("ticked")
+}

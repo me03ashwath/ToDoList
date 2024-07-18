@@ -109,7 +109,10 @@ def deleteTask(request, taskId):
     return redirect(request.META.get('HTTP_REFERER'))
 
 def taskCompleted(request, taskId):
-    pass
+    task = Task.objects.get(id = taskId)
+    task.completed = False if task.completed else True
+    task.save()
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def logoutUser(request):
     logout(request)

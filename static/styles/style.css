@@ -348,37 +348,12 @@ label{
 .task-list::-webkit-scrollbar-thumb:hover {
     background: #1c55c0; 
 }
-.tickbox{
-    display: none;
-}
-.custom-tickbox {
-    margin-top: 10px;
-    margin-left: 7px;
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative;
-}
-.tickbox:checked + .custom-tickbox {
-    background-image: url('../images/tick.png');
-    background-size: cover;
-    background-position: center;
-}
-.tickbox:checked + .custom-tickbox::after {
-    opacity: 1;
-}
-
 .task-list-item{
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     background-color: transparent;
     border-radius: 10px;
-    /* transition: background-color 0.3s ease; */
 }
 .task-list-item:hover{
     background-color: #8ed8f5d7;
@@ -391,6 +366,47 @@ label{
     display: flex;
     justify-content: center;
 }
+.tickbox{
+    background-color: #def3fa;
+    margin-top: 10px;
+    border: 2px solid;
+    border-radius: 5px;
+    width: 15px;
+    height: 15px;
+}
+.tickbox:hover{
+    background-color: #f3f6f7;
+    margin-top: 9px;
+    border: 2px solid rgba(0, 0, 0, 0.797);
+    border-radius: 5px;
+    width: 17px;
+    height: 17px;
+}
+.ticked{
+    background-image: url('../images/tick.png');
+    background-size: cover;
+}
+
+.task{
+    margin: 3px 10px 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: large;
+}
+.strike {
+    text-decoration: none; 
+    position: relative; 
+}
+.strike::after {
+    content: ""; 
+    position: absolute; 
+    left: 0;
+    bottom: 10px; 
+    width: 100%; 
+    border-bottom: 1px solid black; 
+}
+
 .task-delete-btn{
     margin-top: 6px;
     margin-right: 10px;
@@ -398,12 +414,6 @@ label{
 }
 .task-delete-btn:hover{
     opacity: .7;
-}
-.task{
-    margin: 5px 10px 5px 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .new-task{
     display: flex;
@@ -425,5 +435,3 @@ label{
 .new-task-form{
     display: flex;
 }
-
-
