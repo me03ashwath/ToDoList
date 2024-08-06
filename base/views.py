@@ -58,7 +58,10 @@ def signupPage(request):
     return render(request, 'base/login-signup.html', context)
 
 def home(request):
-    user = request.user
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        return redirect('login')
     topics = Topic.objects.filter(user = user)
     context = {'topics':topics}
     return render(request, 'base/home.html', context)
